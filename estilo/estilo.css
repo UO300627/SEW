@@ -1,0 +1,27 @@
+/*Adrián Gutiérrez García, UO300627*/
+/*Estilos generales del proyecto MotoGP-Desktop*/
+
+/*especifidad del selector: (0,0,1)*/
+/*El color se hereda a los títulos h2...h6, p ...*/
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4ebd0;
+    color: #000000;
+}
+
+/*especifidad de selector: (0,0,1)*/
+header{
+    background-color: #f2d7a5;
+}
+
+/*especifidad de selector: (0,0,2)*/
+/*El color se hereda a los hijos del enlace*/
+h1 a{
+    color:#000000
+}
+
+/*especifidad de selector: (0,0,2)*/
+/*El color se hereda a los hijos del enlace*/
+nav a{
+    color: #000000;
+}

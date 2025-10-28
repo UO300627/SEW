@@ -1,0 +1,37 @@
+<!ELEMENT circuito (nombre,longitud,anchuraMedia,fecha,hora,numeroVueltas,localidadMasProxima,pais,nombrePatrocinador,referencias,fotos,videos,puntoOrigen,tramos,vencedor,clasificacionGeneral)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT longitud (#PCDATA)>
+<!ELEMENT anchuraMedia (#PCDATA)>
+<!ELEMENT fecha (#PCDATA)>
+<!ELEMENT hora (#PCDATA)>
+<!ELEMENT numeroVueltas (#PCDATA)>
+<!ELEMENT localidadMasProxima (#PCDATA)>
+<!ELEMENT pais (#PCDATA)>
+<!ELEMENT nombrePatrocinador (#PCDATA)>
+<!ELEMENT referencias (referencia+)>
+<!ELEMENT referencia (#PCDATA)>
+<!ELEMENT fotos (foto+)>
+<!ELEMENT foto (#PCDATA)>
+<!ELEMENT videos (video+)>
+<!ELEMENT video (#PCDATA)>
+<!ELEMENT puntoOrigen (coordenada)>
+<!ELEMENT coordenada (longitudPunto,latitudPunto,altitudPunto)>
+<!ELEMENT longitudPunto (#PCDATA)>
+<!ELEMENT latitudPunto (#PCDATA)>
+<!ELEMENT altitudPunto (#PCDATA)>
+<!ELEMENT tramos (tramo+)>
+<!ELEMENT tramo (distancia,coordenada,sector)>
+<!ELEMENT distancia (#PCDATA)>
+<!ELEMENT sector (#PCDATA)>
+<!ELEMENT vencedor (#PCDATA)>
+<!ELEMENT clasificacionGeneral (primero,segundo,tercero)>
+<!ELEMENT primero (#PCDATA)>
+<!ELEMENT segundo (#PCDATA)>
+<!ELEMENT tercero (#PCDATA)>
+<!ATTLIST longitud unidad CDATA #REQUIRED>
+<!ATTLIST anchuraMedia unidad CDATA #REQUIRED>
+<!ATTLIST longitudPunto unidad CDATA #REQUIRED>
+<!ATTLIST latitudPunto unidad CDATA #REQUIRED>
+<!ATTLIST altitudPunto unidad CDATA #REQUIRED>
+<!ATTLIST distancia unidad CDATA #REQUIRED>
+<!ATTLIST vencedor tiempoEmpleado CDATA #REQUIRED>                    

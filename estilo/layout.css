@@ -1,0 +1,45 @@
+/*especifidad del selector:(0,0,1)*/
+header{
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 4em;
+}
+
+/*especifidad del selector:(0,0,1)*/
+nav{
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.75em;
+}
+
+@media(min-width:320px) and (max-width:799px){
+    /*especifidad del selector:(0,0,1)*/
+    header{
+        flex-direction: column;
+        /*Advertencia por redefinicion de la propiedad flex-direction del elemento header. Controlada*/
+    }
+
+    /*especifidad del selector:(0,0,1)*/
+    nav {
+        flex-direction: column;
+        /*Advertencia por redefinicion de la propiedad flex-direction del elemento nav. Controlada*/
+    }
+
+    /*especifidad del selector:(0,1,2)*/
+    body > p:first-of-type{
+        display: none;
+    }
+
+    /*especifidad del selector:(0,1,1)*/
+    Video{
+        width:100%;
+        height:auto;
+    }
+
+    /*especifidad del selector:(0,1,1)*/
+    audio{
+        width: 100%;
+    }
+}

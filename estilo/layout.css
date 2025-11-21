@@ -1,0 +1,92 @@
+/*especifidad del selector:(0,0,1)*/
+header{
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 4em;
+}
+
+/*especifidad del selector:(0,0,1)*/
+nav{
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.75em;
+}
+
+/*especifidad del selector:(0,0,2)*/
+article > div{
+    height: 70vh; 
+    width: 50vw;
+}
+
+/*especifidad del selector:(0,0,2)*/
+section > img { /*mirar si hay que poner el section dentro del article*/
+    width:50vw;
+    height:50vh;
+}
+
+/*especifidad del selector:(0,0,1)*/
+svg{
+    width:50vw;
+    height:50vh;
+}
+
+@media(min-width:320px) and (max-width:799px){
+    /*especifidad del selector:(0,0,1)*/
+    header{
+        flex-direction: column;
+        /*Advertencia por redefinicion de la propiedad flex-direction del selector header. Controlada*/
+    }
+
+    /*especifidad del selector:(0,0,1)*/
+    nav {
+        flex-direction: column;
+        /*Advertencia por redefinicion de la propiedad flex-direction del selector nav. Controlada*/
+    }
+
+    /*especifidad del selector:(0,1,2)*/
+    body > p:first-of-type{
+        display: none;
+    }
+
+    /*especifidad del selector:(0,1,1)*/
+    Video{
+        width:100%;
+        height:auto;
+    }
+
+    /*especifidad del selector:(0,1,1)*/
+    audio{
+        width: 100%;
+    }
+
+    /*especifidad del selector:(0,0,3)*/
+    article h2 + img{
+        width:100%;
+        height:auto;
+    }
+    /*especifidad del selector:(0,0,2)*/
+    article > div{
+        width: 100%;
+        height: 50vw; 
+        /*Advertencias por redefinicion de las propiedades weight y height del selector section > div. Controlada*/
+    }
+
+    /*especifidad del selector:(0,0,2)*/
+    section > img { /*mirar si hay que poner el section dentro del article*/
+        width:100%;
+        height:auto;
+        /*Advertencias por redefinicion de las propiedades weight y height del selector section > img. Controlada*/
+    }
+
+    /*especifidad del selector:(0,0,1)*/
+    svg { /*mirar si hay que poner el section dentro del article*/
+        width:100%;
+        height:auto;
+        /*Advertencias por redefinicion de las propiedades weight y height del selector svg. Controlada*/
+    }
+    
+
+    /*tener en cuenta para poner estilos del svg relacionados con el grafico de la altimetria*/
+}

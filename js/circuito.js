@@ -37,6 +37,7 @@ class Circuito{
             const tipoTexto = /text.*/;
             articulo.innerHTML = "";
             articulo.appendChild(tituloArticulo);
+            articulo.appendChild(label);
             articulo.appendChild(input);
             articulo.appendChild(mensajeError);
             mensajeError.textContent="";
@@ -52,7 +53,6 @@ class Circuito{
             }
         });    
         main.appendChild(articulo);
-
     }
 
     #procesarHTML(contenidoHTML,articulo){

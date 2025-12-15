@@ -5,8 +5,6 @@ class Svg(object):
     def __init__(self):
         self.raiz = ET.Element('svg', xmlns="http://www.w3.org/2000/svg",
                                          version="2.0",
-                                         width=str(1000),
-                                         height=str(300),
                                          viewBox=f"0 0 1000 300")
 
     def obtenerDatosPuntos(self, nameSpace, raiz,tramos):

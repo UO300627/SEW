@@ -83,13 +83,15 @@ class Ciudad{
         articulo.append($("<p></p>").text("Lluvia: " + lluvia + " mm"));
         articulo.append($("<p></p>").text("Humedad relativa: " + humedad + " %"));
         articulo.append($("<p></p>").text("Velocidad del viento: " + velocidadViento + " km/h"));
-        articulo.append($("<p></p>").text("Dirección del viento: " + direccionViento + " km/h"));
+        articulo.append($("<p></p>").text("Dirección del viento: " + direccionViento + " º"));
 
         const salidaSol = new Date(datosDiarios.sunrise[0]).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
         const puestaSol = new Date(datosDiarios.sunset[0]).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
         articulo.append($("<p></p>").text("Salida del sol: " + salidaSol));
         articulo.append($("<p></p>").text("Puesta del sol: " + puestaSol));
-        $("main").append(articulo); //añadirlo cuadno tenfg todo
+        $("main").append(articulo);
+
+        this.getMeteorologiaEntrenos();
     }
 
     getMeteorologiaEntrenos(){
@@ -161,7 +163,6 @@ $(document).ready(function(){
     ciudad.getInformacionSecundaria()
     ciudad.escribirCoordenadas()
     ciudad.getMeteorologiaCarrera()
-    ciudad.getMeteorologiaEntrenos()
 })
 
 

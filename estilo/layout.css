@@ -16,20 +16,20 @@ nav{
 
 /*especifidad del selector:(0,0,2)*/
 article > div{
-    height: 70vh; 
     width: 50vw;
+    height: 70vh;
 }
 
 /*especifidad del selector:(0,0,2)*/
-section > img { /*mirar si hay que poner el section dentro del article*/
+section > img {
     width:50vw;
-    height:50vh;
+    height:auto;
 }
 
-/*especifidad del selector:(0,0,1)*/
-svg{
+/*especifidad del selector:(0,0,2)*/
+figure > svg{
     width:50vw;
-    height:50vh;
+    height:auto;
 }
 
 @media(min-width:320px) and (max-width:799px){
@@ -78,19 +78,18 @@ svg{
     /*especifidad del selector:(0,0,2)*/
     article > div{
         width: 100%;
-        height: 50vw; 
         /*Advertencias por redefinicion de las propiedades weight y height del selector section > div. Controlada*/
     }
 
     /*especifidad del selector:(0,0,2)*/
-    section > img { /*mirar si hay que poner el section dentro del article*/
+    section > img {
         width:100%;
         height:auto;
         /*Advertencias por redefinicion de las propiedades weight y height del selector section > img. Controlada*/
     }
 
-    /*especifidad del selector:(0,0,1)*/
-    svg {
+    /*especifidad del selector:(0,0,2)*/
+    figure > svg {
         width:100%;
         height:auto;
         /*Advertencias por redefinicion de las propiedades weight y height del selector svg. Controlada*/

@@ -34,7 +34,7 @@ class Circuito{
         articulo.appendChild(mensajeError);
         input.addEventListener("change", (evento) => {
             const archivo = evento.target.files[0];
-            const tipoTexto = /text.*/;
+            const tipoTexto = /html.*/;
             articulo.innerHTML = "";
             articulo.appendChild(tituloArticulo);
             articulo.appendChild(label);
@@ -122,71 +122,101 @@ class CargadorSVG{
 }
 
 class CargadorKML{
-    leerArchivoKML(){
+
+    constructor() {
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWRyaWFuZ3V0aWVycmV6MjAwNSIsImEiOiJjbWllZWFzODQwMDVtM2VzNzIwdXhnOW96In0.kdZTTD3-knru_ZQoGqASHw'; 
+    }
+
+    leerArchivoKML() {
         const main = document.querySelector("main");
         const articulo = document.createElement("article");
         const tituloArticulo = document.createElement("h3");
         tituloArticulo.textContent = "Carga del archivo kml";
         articulo.appendChild(tituloArticulo);
+        
         const input = document.createElement("input");
         input.type = "file";
         input.id = "input-kml";
+        
         const label = document.createElement("label");
         label.htmlFor = "input-kml";
         label.textContent = "Selecciona el archivo KML a cargar: ";
+        
         const divMapa = document.createElement("div");
+
         input.addEventListener("change", (evento) => {
             const archivo = evento.target.files[0];
             const tipoTexto = /kml.*/;
-            if (archivo.type.match(tipoTexto)) {              
+            
+            if (archivo.type.match(tipoTexto) || archivo.name.endsWith('.kml')) {              
                 const lector = new FileReader();
                 lector.onload = (evento) => {
-                    const mapa = new google.maps.Map(divMapa,{
-                        zoom:15,
-                        center: {lat: 2.7605323046860426, lng: 101.73770823971508}
+                    const mapa = new mapboxgl.Map({
+                        container: divMapa,
+                        center: [101.73770823971508, 2.7605323046860426],
+                        style: 'mapbox://styles/mapbox/satellite-streets-v12',
+                        zoom: 14
                     });
-                    this.#insertarCapaKML(lector.result,mapa);
+
+                    mapa.on('load', () => {
+                        this.#insertarCapaKML(lector.result, mapa);
+                    });
                 }
                 lector.readAsText(archivo);
             } else {
                 divMapa.innerText = "Error: El archivo seleccionado no es válido";
             }
         });
+        
         articulo.appendChild(label);
         articulo.appendChild(input);
         articulo.appendChild(divMapa);
         main.appendChild(articulo);
     }
 
-    #insertarCapaKML(contenidoKML,mapa){
+    #insertarCapaKML(contenidoKML, mapa) {
         const parser = new DOMParser();
-        var documentoKML = parser.parseFromString(contenidoKML,"text/xml");
+        var documentoKML = parser.parseFromString(contenidoKML, "text/xml");
         const coordenadas = documentoKML.getElementsByTagName("coordinates");
 
         const arrayCoordenadas = [];
-        for(let coordenada of coordenadas){
-            if(coordenada.parentNode.tagName !== "LineString"){
-                const coordenadaLatLng = coordenada.textContent.trim().split(',');
-                arrayCoordenadas.push({
-                    lat: parseFloat(coordenadaLatLng[1]),
-                    lng: parseFloat(coordenadaLatLng[0])
-                });
+        for (let coordenada of coordenadas) {
+            if (coordenada.parentNode.tagName !== "LineString") {
+                const coordenadaTexto = coordenada.textContent.trim().split(',');             
+                const lng = parseFloat(coordenadaTexto[0]);
+                const lat = parseFloat(coordenadaTexto[1]);
+
+                arrayCoordenadas.push([lng, lat]);
             }
-            
         }
-        const marcadorOrigen = new google.maps.Marker({
-            position: arrayCoordenadas[0],
-            map: mapa,
-            title: 'Origen del circuito'
+
+        if (arrayCoordenadas.length > 0) {
+            new mapboxgl.Marker()
+            .setLngLat(arrayCoordenadas[0])
+            .addTo(mapa);
+        }
+
+        mapa.addSource('ruta-kml', {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'LineString',
+                    'coordinates': arrayCoordenadas 
+                }
+            }
         });
-        const polyline = new google.maps.Polyline({
-            path: arrayCoordenadas,
-            geodesic:true,
-            strokeColor: "#ff0000",
-            strokeOpacity: 0.8,
-            strokeWeight: 4,
+
+        mapa.addLayer({
+            'id': 'ruta-kml-visual',
+            'type': 'line',
+            'source': 'ruta-kml',
+            'paint': {
+                'line-color': '#ff0000', 
+                'line-width': 4,        
+                'line-opacity': 0.8      
+            }
         });
-        polyline.setMap(mapa);
     }
 }
 

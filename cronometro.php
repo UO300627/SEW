@@ -28,7 +28,7 @@ if (count($_POST) > 0) {
     <meta name="description" content="Cronómetro para tiempos de vuelta" />
     <meta name="keywords" content="cronometro, motogp, tiempos" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <link rel="icon" type="text/css" href="multimedia/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
 </head>

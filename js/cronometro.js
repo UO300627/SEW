@@ -30,7 +30,7 @@ class Cronometro{
         this.#mostrar();
     }
 
-    #mostrar(){ //mirar si el try catch es redundante
+    #mostrar(){
         var tiempoActual;
         try{
             const minutos = parseInt(this.#tiempo /60000);

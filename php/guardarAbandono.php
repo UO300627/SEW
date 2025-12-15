@@ -7,15 +7,16 @@ if (isset($_SESSION['id_usuario_actual'])) {
     $config = new Configuracion();
     $id_usuario = $_SESSION['id_usuario_actual'];
     $estado = $_SESSION['estado_test'] ?? 'desconocido';
+    $dispositivo = $_SESSION['dispositivo_utilizado'] ?? 'Ordenador';
     
-
+    $tiempo_empleado = $_SESSION['tiempoTranscurrido'] ?? 0;
     if ($estado === 'preguntas') {
-        $config->guardarResultados($id_usuario, null, null, null, null, null, false);
+        $config->guardarResultados($id_usuario, $dispositivo, null, null, null, null, false, null, null, null, null, null, null, null, null, null, null);
     }
     
     elseif ($estado === 'final') {
-        $tiempo_empleado = $_SESSION['tiempoTranscurrido'] ?? 0;
-        $config->guardarResultados($id_usuario, null, null, null, null, $tiempo_empleado, false);
+        
+        $config->guardarResultados($id_usuario, $dispositivo, null, null, null, $tiempo_empleado, false, null, null, null, null, null, null, null, null, null, null);
     }
     
     $_SESSION = array();

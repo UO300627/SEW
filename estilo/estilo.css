@@ -1,8 +1,5 @@
 /*Adrián Gutiérrez García, UO300627*/
 /*Estilos generales del proyecto MotoGP-Desktop*/
-/*Si hay alguna advertencia con herencia correcta, poner un comentario
-tipo:advertencia por herencia de color de fondo de body #color*/
-/*Tabien advertencia provocada por la media query*/
 
 /*especifidad del selector: (0,0,1)*/
 /*El color se hereda a los títulos h2...h6, p ...*/
@@ -27,8 +24,7 @@ header a{
 
 /*especifidad del selector:(0,1,0)*/
 .active{
-    font-weight: bold;
-    
+    font-weight: bold; 
 }
 
 /*especifidad del selector:(0,1,2)*/
@@ -38,8 +34,6 @@ body > p:first-of-type{
 
 /**especifidad del selector:(0,0,3)*/
 body > p > a{
-    text-decoration-line: none;
     color: #000000;
-    /*Advertencia por herencia de color de fondo del body #f4edb0*/
-     
+    /*Advertencia por herencia de color de fondo del body #f4edb0*/  
 }

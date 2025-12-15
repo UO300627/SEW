@@ -26,7 +26,7 @@ class Noticias{
 
         datos.data.forEach(noticia =>{
             articulo.append($("<h2></h2>").text(noticia.title));
-            articulo.append($("<h3></h3>").text(noticia.snippet));
+            articulo.append($("<h3></h3>").text(noticia.description));
             articulo.append($("<p></p>").text("Fuente de la noticia: " + noticia.source));
             articulo.append($("<a></a>").attr("href",noticia.url).text("Leer más..."));
         });

@@ -62,9 +62,10 @@ class Carrusel{
         if(!this.#intervaloActivado){
             this.#intervaloActivado = true;
             setInterval(this.#cambiarFotografia.bind(this),3000);
+
+            let noticia = new Noticias();
+            noticia.buscar();
         }
-        let noticia = new Noticias();
-        noticia.buscar();
     }
 
     #cambiarFotografia(){

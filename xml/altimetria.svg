@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="1000" height="300" viewBox="0 0 1000 300">
+<svg xmlns="http://www.w3.org/2000/svg" version="2.0" viewBox="0 0 1000 300">
   <line x1="50" y1="240" x2="950" y2="240" stroke="black" stroke-width="1" />
   <line x1="50" y1="50" x2="50" y2="240" stroke="black" stroke-width="1" />
   <text x="45" y="243" font-family="Arial" font-size="10" style="text-anchor: end; fill: black;">23.0m</text>

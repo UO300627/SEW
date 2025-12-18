@@ -22,25 +22,24 @@ class Circuito{
         const input = document.createElement("input");
         input.type = "file";
         input.id = "input-html";
-        const mensajeError = document.createElement("p");
-        mensajeError.textContent="";
+        
         const label = document.createElement("label");
         label.htmlFor = "input-html";
         label.textContent = "Selecciona el archivo HTML a cargar: ";
-
+        
         articulo.appendChild(tituloArticulo);
         articulo.appendChild(label);
         articulo.appendChild(input);
-        articulo.appendChild(mensajeError);
         input.addEventListener("change", (evento) => {
             const archivo = evento.target.files[0];
+            if (!archivo) {
+                return;
+            }
             const tipoTexto = /html.*/;
             articulo.innerHTML = "";
             articulo.appendChild(tituloArticulo);
             articulo.appendChild(label);
             articulo.appendChild(input);
-            articulo.appendChild(mensajeError);
-            mensajeError.textContent="";
             if (archivo.type.match(tipoTexto)) {              
                 const lector = new FileReader();
                 lector.onload = (evento) => {
@@ -49,7 +48,9 @@ class Circuito{
                 }
                 lector.readAsText(archivo);
             } else {
+                const mensajeError = document.createElement("p");
                 mensajeError.textContent = "Error: El archivo seleccionado no es válido";
+                articulo.appendChild(mensajeError);
             }
         });    
         main.appendChild(articulo);
@@ -84,32 +85,41 @@ class CargadorSVG{
         const articulo = document.createElement("article");
         const tituloArticulo = document.createElement("h3");
         tituloArticulo.textContent = "Carga del archivo svg";
-        articulo.appendChild(tituloArticulo);
         const input = document.createElement("input");
         input.type = "file";
         input.id = "input-svg";
         const label = document.createElement("label");
         label.htmlFor = "input-svg";
         label.textContent = "Selecciona el archivo SVG a cargar: ";
-        const figure = document.createElement("figure");
-
+        
+        articulo.appendChild(tituloArticulo);
+        articulo.appendChild(label);
+        articulo.appendChild(input);
         input.addEventListener("change", (evento) => {
             const archivo = evento.target.files[0];
+            if (!archivo) {
+                return;
+            }
             const tipoTexto = /image.*/;
+            articulo.innerHTML = "";
+            articulo.appendChild(tituloArticulo);
+            articulo.appendChild(label);
+            articulo.appendChild(input);
             if (archivo.type.match(tipoTexto)) {              
                 const lector = new FileReader();
                 lector.onload = (evento) => {
+                    const figure = document.createElement("figure");
                     figure.innerHTML = "";
+                    articulo.appendChild(figure);
                     figure.appendChild(this.#insertarSVG(lector.result));
                 }
                 lector.readAsText(archivo);
             } else {
-                figure.innerText = "Error: El archivo seleccionado no es válido";
+                const mensajeError = document.createElement("p");
+                mensajeError.textContent = "Error: El archivo seleccionado no es válido";
+                articulo.appendChild(mensajeError);
             }
         });
-        articulo.appendChild(label);
-        articulo.appendChild(input);
-        articulo.appendChild(figure);
         main.appendChild(articulo);
     }
 
@@ -132,7 +142,6 @@ class CargadorKML{
         const articulo = document.createElement("article");
         const tituloArticulo = document.createElement("h3");
         tituloArticulo.textContent = "Carga del archivo kml";
-        articulo.appendChild(tituloArticulo);
         
         const input = document.createElement("input");
         input.type = "file";
@@ -142,15 +151,25 @@ class CargadorKML{
         label.htmlFor = "input-kml";
         label.textContent = "Selecciona el archivo KML a cargar: ";
         
-        const divMapa = document.createElement("div");
-
+        articulo.appendChild(tituloArticulo);
+        articulo.appendChild(label);
+        articulo.appendChild(input);
         input.addEventListener("change", (evento) => {
             const archivo = evento.target.files[0];
+            if (!archivo) {
+                return;
+            }
             const tipoTexto = /kml.*/;
             
+            articulo.innerHTML = "";
+            articulo.appendChild(tituloArticulo);
+            articulo.appendChild(label);
+            articulo.appendChild(input);
             if (archivo.type.match(tipoTexto) || archivo.name.endsWith('.kml')) {              
                 const lector = new FileReader();
                 lector.onload = (evento) => {
+                    const divMapa = document.createElement("div");
+                    articulo.appendChild(divMapa);
                     const mapa = new mapboxgl.Map({
                         container: divMapa,
                         center: [101.73770823971508, 2.7605323046860426],
@@ -164,13 +183,14 @@ class CargadorKML{
                 }
                 lector.readAsText(archivo);
             } else {
-                divMapa.innerText = "Error: El archivo seleccionado no es válido";
+                const mensajeError = document.createElement("p");
+                mensajeError.textContent = "Error: El archivo seleccionado no es válido";
+                articulo.appendChild(mensajeError);
             }
         });
         
         articulo.appendChild(label);
         articulo.appendChild(input);
-        articulo.appendChild(divMapa);
         main.appendChild(articulo);
     }
 
@@ -220,11 +240,9 @@ class CargadorKML{
     }
 }
 
-$(document).ready(function(){
-    const circuito = new Circuito();
-    circuito.leerArchivoHTML();
-    const cargadorSVG = new CargadorSVG();
-    cargadorSVG.leerArchivoSVG();
-    const cargadorKML = new CargadorKML();
-    cargadorKML.leerArchivoKML();
-});
+const circuito = new Circuito();
+circuito.leerArchivoHTML();
+const cargadorSVG = new CargadorSVG();
+cargadorSVG.leerArchivoSVG();
+const cargadorKML = new CargadorKML();
+cargadorKML.leerArchivoKML();

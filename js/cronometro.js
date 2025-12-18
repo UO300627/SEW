@@ -41,14 +41,14 @@ class Cronometro{
             var segundosConvertidos = segundos.toString().padStart(2,"0");
             var decimasConvertidas = decimas.toString().padStart(1,"0");
 
-            tiempoActual = minutosConvertidos + ":" + segundosConvertidos + ":" + decimasConvertidas;
+            tiempoActual = minutosConvertidos + ":" + segundosConvertidos + "." + decimasConvertidas;
 
         }catch(err){
             var minutos = parseInt(this.#tiempo.getMinutes()).toString().padStart(2,"0");
             var segundos = parseInt(this.#tiempo.getSeconds()).toString().padStart(2,"0");
             var decimas = parseInt(this.#tiempo.getMilliseconds()).toString().padStart(1,"0");
 
-            tiempoActual = minutos + ":" + segundos + ":" + decimas;
+            tiempoActual = minutos + ":" + segundos + "." + decimas;
         }
         document.querySelector("main p").textContent = tiempoActual;
     }
@@ -79,7 +79,8 @@ class Cronometro{
         
         if(reiniciar){
             reiniciar.addEventListener("click",() => this.reiniciar());
-        }
-        
+        }      
     }
 }
+let cronometro = new Cronometro();
+

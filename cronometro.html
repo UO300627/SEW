@@ -2,17 +2,16 @@
 
 <html lang="es">
 <head>
-    <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <title>MotoGP-Juegos-Cronómetro</title>
     <meta name="autor" content ="Adrián Gutiérrez García"/>
-    <meta name="description" content="Cronómetro"/>
+    <meta name="description" content="Cronómetro para contar el tiempo"/>
     <meta name ="keywords" content ="tiempo, medición" /> 
     <meta name="viewport" content = "width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
     <link rel="icon" type="text/css" href="multimedia/favicon.ico" />
-    <script src = "js/cronometro.js"></script>
+    <script src = "js/cronometro.js" defer></script>
 </head>
 
 <body>
@@ -32,15 +31,13 @@
     <p>Estás en: <a href="index.html">Inicio</a> >> <a href="juegos.html">Juegos</a> >> <strong>Cronómetro</strong></p>
 
     <main>
-        <p>00:00:0</p>
+        <h2>Cronómetro</h2>
+        <p>00:00.0</p>
         <form>
             <input type="button" value="Arrancar" />
             <input type="button" value="Parar" />
             <input type="button" value="Reiniciar" />
-        </form>
-        <script>
-            let cronometro = new Cronometro();
-        </script>
+        </form>      
     </main>
 
 </body>

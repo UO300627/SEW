@@ -17,9 +17,6 @@ class Configuracion{
     }
 
     public function reiniciarBD(){  
-        $this->db->query("CREATE DATABASE IF NOT EXISTS " . $this->database);
-        $this->db->select_db($this->database);
-
         $this->db->query("SET FOREIGN_KEY_CHECKS = 0");
 
         $this->db->query("DROP TABLE IF EXISTS respuesta");
@@ -38,7 +35,7 @@ class Configuracion{
 
         $this->db->query("INSERT INTO genero (nombre) VALUES ('Masculino'), ('Femenino'), ('Otro')");
 
- 
+    
         $crearTablaDispositivo = "CREATE TABLE dispositivo (
             id_dispositivo INT AUTO_INCREMENT PRIMARY KEY,
             nombre VARCHAR(40) NOT NULL
@@ -47,7 +44,7 @@ class Configuracion{
 
         $this->db->query("INSERT INTO dispositivo (nombre) VALUES ('Ordenador'), ('Tableta'), ('Telefono')");
 
- 
+    
         $crearTablaUsuario = "CREATE TABLE usuario (
             id_usuario INT AUTO_INCREMENT PRIMARY KEY, 
             edad INT NOT NULL CHECK (edad BETWEEN 0 AND 120), 
@@ -67,7 +64,7 @@ class Configuracion{
             completado BOOLEAN NOT NULL, 
             comentarios_usuario TEXT,
             propuestas_mejora TEXT,
-            valoracion INT CHECK (valoracion BETWEEN 0 AND 10),
+            valoracion INT CHECK(valoracion BETWEEN 0 AND 10),
             FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
             FOREIGN KEY (id_dispositivo) REFERENCES dispositivo(id_dispositivo)
         )";
@@ -79,7 +76,9 @@ class Configuracion{
             comentarios_facilitador TEXT NOT NULL,
             FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
         )";
-        $this->db->query($crearTablaObservacionFacilitador);
+
+        $this->db->query($crearTablaObservacionFacilitador);        
+
 
         $crearTablaRespuesta = "CREATE TABLE respuesta (
             id_respuesta INT AUTO_INCREMENT PRIMARY KEY,
@@ -90,7 +89,6 @@ class Configuracion{
             UNIQUE KEY respuesta_unica (id_resultado, numero_pregunta)
         )";
         $this->db->query($crearTablaRespuesta);
-
         $this->db->query("SET FOREIGN_KEY_CHECKS = 1");
     }
 
@@ -157,6 +155,12 @@ class Configuracion{
                 while ($resp = $respuestasObtenidas->fetch_assoc()) {
                     $numero = $resp['numero_pregunta'];
                     $valor = $resp['valor_respuesta']; 
+
+                    if($valor == "000"){
+                        $valor = "No respondida";
+                    }elseif ($valor === null) {
+                        $valor = "-";
+                    }
                     $respuestas[$numero] = $valor;
                 }
             }
@@ -181,11 +185,11 @@ class Configuracion{
                 $pruebaUsabilidad[] = $resultado['id_resultado'];
                 $pruebaUsabilidad[] = $resultado['id_dispositivo'];
                 $pruebaUsabilidad[] = $dispositivo; 
-                $pruebaUsabilidad[] = $resultado['tiempo_empleado'];
+                $pruebaUsabilidad[] = ($resultado['tiempo_empleado'] === null) ? "-" : $resultado['tiempo_empleado'];
                 $pruebaUsabilidad[] = $resultado['completado'];
-                $pruebaUsabilidad[] = $resultado['comentarios_usuario'];
-                $pruebaUsabilidad[] = $resultado['propuestas_mejora'];
-                $pruebaUsabilidad[] = $resultado['valoracion'];
+                $pruebaUsabilidad[] = ($resultado['comentarios_usuario'] === null) ? "-" : $resultado['comentarios_usuario'];
+                $pruebaUsabilidad[] = ($resultado['propuestas_mejora'] === null) ? "-" : $resultado['propuestas_mejora'];
+                $pruebaUsabilidad[] = ($resultado['valoracion'] === null) ? "-" : $resultado['valoracion'];
 
                 $pruebaUsabilidad[] = $respuestas[1];
                 $pruebaUsabilidad[] = $respuestas[2];
@@ -198,14 +202,14 @@ class Configuracion{
                 $pruebaUsabilidad[] = $respuestas[9];
                 $pruebaUsabilidad[] = $respuestas[10];
             } else {
-                for($i=0; $i<18; $i++) { $pruebaUsabilidad[] = ""; }
+                for($i=0; $i<2; $i++) { $pruebaUsabilidad[] = "-"; }
             }
 
             if ($observacionesFacilitador) {
                 $pruebaUsabilidad[] = $observacionesFacilitador['id_observacion'];
                 $pruebaUsabilidad[] = $observacionesFacilitador['comentarios_facilitador'];
             } else {
-                for($i=0; $i<2; $i++) { $pruebaUsabilidad[] = ""; }
+                for($i=0; $i<2; $i++) { $pruebaUsabilidad[] = "-"; }
             }
             fputcsv($archivoExportado, $pruebaUsabilidad, ";");
         }
@@ -240,7 +244,7 @@ class Configuracion{
         }
     }
 
-    public function guardarResultados($id_usuario, $dispositivo, $valoracion, $propuestas, $comentarios, $tiempo,$completado,$lista_respuestas) {  
+    public function guardarResultados($id_usuario, $dispositivo, $valoracion, $propuestas, $comentarios, $tiempo, $completado,$lista_respuestas) {  
         $consultaInsertarResultados = $this->db->prepare("INSERT INTO resultado (id_usuario, id_dispositivo, tiempo_empleado, completado, comentarios_usuario, propuestas_mejora, valoracion) 
                                                                 VALUES (?, ?, ?, ?, ?, ?, ?)");
         $id_dispositivo = $this->buscarIdDispositivo($dispositivo);
@@ -253,6 +257,32 @@ class Configuracion{
         $numeroPregunta = 1;
         $respuestaPreguntaActual = "";
         $consultaRespuestas->bind_param("iis", $id_resultado, $numeroPregunta, $respuestaPreguntaActual);
+        foreach ($lista_respuestas as $respuesta) {
+            $respuestaPreguntaActual = $respuesta;
+            $consultaRespuestas->execute();
+            $numeroPregunta++;
+        }
+        $consultaRespuestas->close();
+        return $id_resultado;
+    }
+
+    public function actualizarResultado($id_resultado,$tiempo,$valoracion,$propuestas,$comentarios,$completado,$lista_respuestas) {
+        $consultaActualizarResultados = $this->db->prepare("UPDATE resultado SET tiempo_empleado = ?,valoracion = ?,propuestas_mejora = ?,comentarios_usuario = ?,completado = ? WHERE id_resultado = ?");
+
+
+        $consultaActualizarResultados->bind_param("dissii",$tiempo,$valoracion,$propuestas,$comentarios,$completado,$id_resultado);
+        $consultaActualizarResultados->execute();
+        $consultaActualizarResultados->close();
+        $consultaRespuestas = $this->db->prepare(
+            "UPDATE respuesta 
+             SET valor_respuesta = ? 
+             WHERE id_resultado = ? AND numero_pregunta = ?"
+        );
+
+        $numeroPregunta = 1;
+        $respuestaPreguntaActual = "";
+        $consultaRespuestas->bind_param("sis", $respuestaPreguntaActual, $id_resultado, $numeroPregunta);
+
         foreach ($lista_respuestas as $respuesta) {
             $respuestaPreguntaActual = $respuesta;
             $consultaRespuestas->execute();

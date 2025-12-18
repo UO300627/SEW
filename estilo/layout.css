@@ -50,8 +50,8 @@ figure > svg{
         display: none;
     }
 
-    /*especifidad del selector:(0,1,1)*/
-    Video{
+    /*especifidad del selector:(0,0,1)*/
+    video{
         width:100%;
         height:auto;
     }
@@ -60,14 +60,6 @@ figure > svg{
     audio{
         width: 100%;
     }
-
-    
-    /*especifidad del selector:(0,0,2) MIRAR SI TENGO QUE PONER ESTA REGLA
-    picture > img{
-        width:100%;
-        height:auto;
-    }
-    */
 
     /*especifidad del selector:(0,0,3)*/
     article h2 + img{

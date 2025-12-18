@@ -16,7 +16,7 @@ class Memoria{
         this.#cronometro.arrancar();
     }
 
-    voltearCarta(carta){
+    #voltearCarta(carta){
         if(carta.dataset.estado != "revelada" && carta.dataset.estado != "volteada" && !this.#tablero_bloqueado){
             carta.dataset.estado = "volteada";
             if(this.#primera_carta == null){
@@ -87,7 +87,9 @@ class Memoria{
     #asociarEventosBotones(){
         const cartas = document.querySelectorAll("main article");
         cartas.forEach(carta =>{
-            carta.addEventListener("click",() => this.voltearCarta(carta));
+            carta.addEventListener("click",() => this.#voltearCarta(carta));
         })
     }
 }
+
+let memoria = new Memoria();

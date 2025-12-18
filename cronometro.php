@@ -23,7 +23,7 @@ if (count($_POST) > 0) {
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>MotoGP - Cronómetro</title>
+    <title>MotoGP-Cronómetro PHP</title>
     <meta name="autor" content="Adrián Gutiérrez García" />
     <meta name="description" content="Cronómetro para tiempos de vuelta" />
     <meta name="keywords" content="cronometro, motogp, tiempos" />

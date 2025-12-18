@@ -20,7 +20,7 @@ if (count($_POST) > 0) {
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>MotoGP - Configuración test</title>
+    <title>MotoGP-Configuración test</title>
     <meta name="autor" content="Adrián Gutiérrez García" />
     <meta name="description" content="Configuración de la base de datos para el test" />
     <meta name="keywords" content="base de datos, reinicio, csv" />

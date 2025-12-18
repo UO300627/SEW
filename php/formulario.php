@@ -44,13 +44,13 @@
             <p>Rellene los siguientes datos adicionales (opcionales):</p>
 
 			<p>Valoración global (0 al 10):</p>
-			<p><input type="number" name="valoracion" min="0" max="10" /></p>
+			<p><input type="number" name="valoracion" min="0" max="10" required/></p>
 
 			<p>Propuestas de mejora:</p>
-			<textarea name="propuestas" rows="5" cols="40" ></textarea>
+			<textarea name="propuestas" rows="5" cols="40" required></textarea>
 
 			<p>Otros comentarios:</p>
-			<textarea name="comentarios" rows="5" cols="40" ></textarea>
+			<textarea name="comentarios" rows="5" cols="40" required></textarea>
 
 			<p><input type="submit" name="guardar_resultados" value="Guardar resultados" /></p>
         <?php } ?>

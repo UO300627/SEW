@@ -62,13 +62,13 @@ class Ciudad{
 
     #procesarJSONCarrera(data){
         const articulo = $("<article></article>");
-        articulo.append($("<h2></h2>").text("Datos del tiempo el día de la carrera"))
+        articulo.append($("<h3></h3>").text("Datos del tiempo el día de la carrera"))
 
         const datosDiarios = data.daily;
         const datosHorarios = data.hourly;
 
         const diaCarrera = datosDiarios.time[0];
-        articulo.append($("<h3></h3>").text("Fecha: " + diaCarrera));
+        articulo.append($("<h4></h4>").text("Fecha: " + diaCarrera));
 
         const temperatura = datosHorarios.temperature_2m[15];
         const sensacion = datosHorarios.apparent_temperature[15];
@@ -106,13 +106,13 @@ class Ciudad{
 
     #procesarJSONEntrenos(data){
         const articulo = $("<article></article>");
-        articulo.append($("<h2></h2>").text("Datos medios de tiempo en los entrenamientos"))
+        articulo.append($("<h3></h3>").text("Datos medios de tiempo en los entrenamientos"))
 
         const datosDiarios = data.daily;
         const datosHorarios = data.hourly
 
         let diaEntrenaiento1 = datosDiarios.time[0];
-        articulo.append($("<h3></h3>").text("Fecha: " + diaEntrenaiento1));
+        articulo.append($("<h4></h4>").text("Fecha: " + diaEntrenaiento1));
 
         let temperaturaMediaDia1 = 0.0;
         let lluviaMediaDia1 = 0.0;
@@ -132,7 +132,7 @@ class Ciudad{
         articulo.append($("<p></p>").text("Humedad relativa media: " + (humedadMediaDia1/numDatosDia1).toFixed(2) + " %"));
 
         let diaEntrenaiento2 = datosDiarios.time[1];
-        articulo.append($("<h3></h3>").text("Fecha: " + diaEntrenaiento2));
+        articulo.append($("<h4></h4>").text("Fecha: " + diaEntrenaiento2));
 
         let temperaturaMediaDia2 = 0.0;
         let lluviaMediaDia2 = 0.0;
@@ -155,15 +155,13 @@ class Ciudad{
 }
 
     
-$(document).ready(function(){
-    let ciudad = new Ciudad("Kuala lumpur","Malasia","kualalumpurense")
-    ciudad.setPoblacionYCoordenadas("2.075.600","3.142866615530959 , 101.68873262503574")
-    ciudad.getCiudad()
-    ciudad.getPais()
-    ciudad.getInformacionSecundaria()
-    ciudad.escribirCoordenadas()
-    ciudad.getMeteorologiaCarrera()
-})
+let ciudad = new Ciudad("Kuala lumpur","Malasia","kualalumpurense");
+ciudad.setPoblacionYCoordenadas("2.075.600","3.142866615530959 , 101.68873262503574");
+ciudad.getCiudad();
+ciudad.getPais();
+ciudad.getInformacionSecundaria();
+ciudad.escribirCoordenadas();
+ciudad.getMeteorologiaCarrera();
 
 
 

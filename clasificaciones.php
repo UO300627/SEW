@@ -88,7 +88,7 @@ $clasificacion->consultar();
                 $segundo = $xml->clasificacionGeneral->segundo;
                 $tercero = $xml->clasificacionGeneral->tercero;
             ?>
-            <p>Clasifiación:</p>
+            <p>Clasificación:</p>
             <ol>
                 <li><?=$primero?></li>
                 <li><?=$segundo?></li>

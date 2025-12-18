@@ -78,7 +78,5 @@ class Carrusel{
     }
 }
 
-$(document).ready(function(){
-    let carrusel = new Carrusel();
-    carrusel.getFotografias();
-})
+let carrusel = new Carrusel();
+carrusel.getFotografias();

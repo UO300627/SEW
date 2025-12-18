@@ -106,7 +106,7 @@ class Ciudad{
 
     #procesarJSONEntrenos(data){
         const articulo = $("<article></article>");
-        articulo.append($("<h3></h3>").text("Datos medios de tiempo en los entrenamientos"))
+        articulo.append($("<h3></h3>").text("Datos medios de tiempo los días de entrenamientos"))
 
         const datosDiarios = data.daily;
         const datosHorarios = data.hourly

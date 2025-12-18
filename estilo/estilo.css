@@ -12,14 +12,14 @@ body{
 /*especifidad del selector: (0,0,1)*/
 header{
     background-color: #f2d7a5;
-    /*Advertencia por herencia del color del body #f4edb0*/
+    /*Advertencia por herencia del color del body #000000. Controlada*/
 }
 
 /*especifidad del selector:(0,0,2)*/
 header a{
     text-decoration-line: none;
     color: #000000;
-    /*Advertencia por herencia de color de fondo del header #f2d7a5*/
+    /*Advertencia por herencia de color de fondo del header #f2d7a5. Controlada*/
 }
 
 /*especifidad del selector:(0,1,0)*/
@@ -35,5 +35,11 @@ body > p:first-of-type{
 /**especifidad del selector:(0,0,3)*/
 body > p > a{
     color: #000000;
-    /*Advertencia por herencia de color de fondo del body #f4edb0*/  
+    /*Advertencia por herencia de color de fondo del body #f4ebd0. Controlada*/  
+}
+
+/**especifidad del selector:(0,1,2)*/
+li a:visited{ /*mirar si poner esto*/
+    color:#00008B;
+    /*Advertencia por herencia de color de fondo del body #f4ebd0. Controlada*/
 }

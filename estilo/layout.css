@@ -56,7 +56,7 @@ figure > svg{
         height:auto;
     }
 
-    /*especifidad del selector:(0,1,1)*/
+    /*especifidad del selector:(0,0,1)*/
     audio{
         width: 100%;
     }
@@ -70,21 +70,19 @@ figure > svg{
     /*especifidad del selector:(0,0,2)*/
     article > div{
         width: 100%;
-        /*Advertencias por redefinicion de las propiedades weight y height del selector section > div. Controlada*/
+        /*Advertencias por redefinicion de la propiedad weight del selector article > div. Controlada*/
     }
 
     /*especifidad del selector:(0,0,2)*/
     section > img {
         width:100%;
-        height:auto;
-        /*Advertencias por redefinicion de las propiedades weight y height del selector section > img. Controlada*/
+        /*Advertencias por redefinicion de la propiedad weight del selector section > img. Controlada*/
     }
 
     /*especifidad del selector:(0,0,2)*/
     figure > svg {
         width:100%;
-        height:auto;
-        /*Advertencias por redefinicion de las propiedades weight y height del selector svg. Controlada*/
+        /*Advertencias por redefinicion de las propiedad weight del selector figure > svg. Controlada*/
     }
 
 }

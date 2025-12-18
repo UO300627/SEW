@@ -23,8 +23,7 @@ main > p{
     /*especifidad del selector:(0,0,1)*/
     main{
         grid-template-columns: repeat(2,1fr);
-        /*Advertencia por redefinicion de la propiedad grid-template-columns 
-        del elemento main. Controlada*/
+        /*Advertencia por redefinicion de la propiedad grid-template-columns del elemento main. Controlada*/
     }
 
 }

@@ -26,7 +26,7 @@
             <p>6. ¿Sobre que circuito se muestra información?</p>
             <p><input type="text" name="circuito" required/></p>
 
-            <p>7. ¿De que días se muestran los datos meteorológicos?</p>
+            <p>7. ¿Cuál es la fecha de la carrera de la cual se muestran datos meteorológicos?</p>
             <p><input type="text" name="meteorologia" required/></p>
 
             <p>8. ¿Quién fue el ganador de la carrera sobre la que se habla?</p>

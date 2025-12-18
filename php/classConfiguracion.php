@@ -156,8 +156,9 @@ class Configuracion{
                     $numero = $resp['numero_pregunta'];
                     $valor = $resp['valor_respuesta']; 
 
-                    if($valor == "000"){
+                    if($valor == "111"){
                         $valor = "No respondida";
+                        $resultado['completado'] = 0;
                     }elseif ($valor === null) {
                         $valor = "-";
                     }

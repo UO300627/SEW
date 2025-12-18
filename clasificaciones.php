@@ -26,9 +26,8 @@ class Clasificacion{
             $duracionParaInterval = preg_replace('/(\d+\.\d+)S$/', $segundosEnteros . 'S', $duracion);
         }
         $intervalo = new DateInterval($duracionParaInterval);
-        $horasTotales = $intervalo->d * 24 + $intervalo->h;
 
-        $resultado = sprintf('%02d:%02d:%02d.%03d', $horasTotales,$intervalo->i,$intervalo->s,$milisegundos);
+        $resultado = sprintf('%02d:%02d.%03d minutos',$intervalo->i,$intervalo->s,$milisegundos);
         return $resultado;
     }
 }

@@ -22,15 +22,16 @@ class Noticias{
 
     #procesarInformacion(datos){
         const main = $("main");
-        const articulo = $("<article></article>");
-
+        const titulo = $("<h2></h2>").text("Noticias");
+        main.append(titulo);
         datos.data.forEach(noticia =>{
-            articulo.append($("<h2></h2>").text(noticia.title));
-            articulo.append($("<h3></h3>").text(noticia.description));
+            const articulo = $("<article></article>");
+            articulo.append($("<h3></h3>").text(noticia.title));
+            articulo.append($("<h4></h4>").text(noticia.description));
             articulo.append($("<p></p>").text("Fuente de la noticia: " + noticia.source));
             articulo.append($("<a></a>").attr("href",noticia.url).text("Leer más..."));
-        });
-        main.append(articulo);
+            main.append(articulo);
+        }); 
     }
 }
 

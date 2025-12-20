@@ -31,7 +31,7 @@ article img {
     position: absolute;
     border-radius: 0.5em;
     background: #1C7CCC;
-    /*Advertencias por herencia tanto en el elemento h3 como el elemento img, del color del body #000000*/
+    /*Advertencias por herencia tanto en el elemento h3 como el elemento img, del color del body #000000. Controladas*/
     backface-visibility: hidden;
 }
 

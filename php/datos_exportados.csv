@@ -1,2 +1,2 @@
-id_usuario;edad;profesion;id_genero;genero;pericia;id_resultado;id_dispositivo;dispositivo;tiempo_empleado;completado;comentarios_usuario;propuestas_mejora;valoracion;r1;r2;r3;r4;r5;r6;r7;r8;r9;r10;id_observacion;comentarios_facilitador
-1;23;3;1;Masculino;3;1;1;Ordenador;12.59;1;3;3;3;3;3;3;3;3;3;3;3;3;3;1;3
+﻿id_usuario;edad;profesion;id_genero;genero;pericia;id_resultado;id_dispositivo;dispositivo;tiempo_empleado;completado;comentarios_usuario;propuestas_mejora;valoracion;r1;r2;r3;r4;r5;r6;r7;r8;r9;r10;id_observacion;comentarios_facilitador
+1;23;Estudiante;1;Masculino;10;1;2;Tableta;245.79;1;Ninguno;"La pregunta de la meteorología es un poco dudosa";9;"Maverick Viñales";"Red Bull KTM Tech3";190;3;3;"Petronas Sepang International Circuit";2025-10-26;"Álex Márquez";"Marc Márquez";5;1;"Posible mejora en las imagenes del html que se carga en circuito para que tengan todas el mismo tamaño."

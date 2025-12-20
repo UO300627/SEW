@@ -20,7 +20,7 @@
             <p>4. ¿Cuantas fotos aparecen en el carrusel de la pantalla de inicio?</p>
             <p><input type="number" name="carrusel" required/></p>
 
-            <p>5. ¿Cuantas noticias aparecen en la pantalla de inicio?:</p>
+            <p>5. ¿Cuantas noticias aparecen en la pantalla de inicio?</p>
             <p><input type="number" name="noticias" required/></p>
 
             <p>6. ¿Sobre que circuito se muestra información?</p>
@@ -41,7 +41,7 @@
             <p><input type="submit" name="parar" value="Terminar Prueba" /></p>
         <?php } ?>
         <?php if ($mostrarFinal) { ?>
-            <p>Rellene los siguientes datos adicionales (opcionales):</p>
+            <p>Rellene los siguientes datos adicionales:</p>
 
 			<p>Valoración global (0 al 10):</p>
 			<p><input type="number" name="valoracion" min="0" max="10" required/></p>

@@ -100,6 +100,8 @@ class Configuracion{
         $nombreArchivo = "datos_exportados.csv";
         $archivoExportado = fopen($nombreArchivo, 'w');
 
+        fwrite($archivoExportado, "\xEF\xBB\xBF");
+
         $encabezados = ['id_usuario', 'edad', 'profesion', 'id_genero', 'genero','pericia', 
             'id_resultado','id_dispositivo', 'dispositivo','tiempo_empleado', 'completado', 'comentarios_usuario', 'propuestas_mejora','valoracion', 
             'r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10',

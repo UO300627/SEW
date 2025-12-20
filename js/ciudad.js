@@ -45,7 +45,7 @@ class Ciudad{
 
     escribirCoordenadas(){
         const coordenadas = document.createElement("p");
-        coordenadas.textContent = "Coordenadas de las ciudad: " + this.#coordenadas;
+        coordenadas.textContent = "Coordenadas de la ciudad: " + this.#coordenadas;
         const main = document.querySelector("main");
         main.appendChild(coordenadas);
     }

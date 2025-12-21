@@ -38,8 +38,9 @@ body > p > a{
     /*Advertencia por herencia de color de fondo del body #f4ebd0. Controlada*/  
 }
 
-/**especifidad del selector:(0,1,2)*/
-li a:visited{ /*mirar si poner esto*/
+/**especifidad del selector li a:visited:(0,1,2)*/
+/**especifidad del selector p a:visited:(0,1,2)*/
+li a:visited, p a:visited{ /*mirar si poner esto*/
     color:#00008B;
-    /*Advertencia por herencia de color de fondo del body #f4ebd0. Controlada*/
+    /*Advertencias por herencia de color de fondo del body en los selectores li a:visited y p a:visited #f4ebd0. Controlada*/
 }
